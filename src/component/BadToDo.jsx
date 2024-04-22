@@ -3,26 +3,50 @@ import DeleteIcon from "@mui/icons-material/Delete";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import { deleteTask, moveTask } from "../utils/handleAPI";
 
-const BadToDo = ({id,task,hr,index,setEntryList,fetchfromAPI}) => {
-    const handleMove=async()=>{
-        const data ={
-            id,
-            type:"entry"
-        }
-       await moveTask(data)
-       fetchfromAPI()
+const BadToDo = ({
+  _id,
+  task,
+  hr,
+  index,
+  fetchfromAPI,
+  checkBadTodo,
+  setCheckBadTodo,
+}) => {
+  const handleMove = async () => {
+    const data = {
+      id: _id,
+      type: "entry",
+    };
+    await moveTask(data);
+    fetchfromAPI();
+  };
+  const handleDelete = async () => {
+    const idToDelete = { _id };
+    await deleteTask(idToDelete);
+    fetchfromAPI();
+  };
+  const handleCheckedBox = (e) => {
+    const { name, checked } = e.target;
+    if (checked) {
+      setCheckBadTodo([...checkBadTodo, name]);
+    } else {
+      setCheckBadTodo(checkBadTodo.filter((id) => id != _id));
     }
-    const handleDelete=async()=>{
-        const idToDelete={_id:id}
-        await deleteTask(idToDelete)
-        fetchfromAPI()
-    }
+  };
   return (
     <div className="eachEntrylist">
       <div className="first">
-      <input type="checkbox" className="custom-checkbox" />
+        <input
+          type="checkbox"
+          checked={checkBadTodo.includes(_id)}
+          name={_id}
+          onChange={handleCheckedBox}
+          className="custom-checkbox"
+        />
         <div className="number">
-          <p className="para">{index+1}. {task}</p>
+          <p className="para">
+            {index + 1}. {task}
+          </p>
         </div>
       </div>
       <div className="eachHour">{hr}</div>
