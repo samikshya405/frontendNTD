@@ -1,4 +1,4 @@
-const baseUrl = "http://localhost:8000/api/v1/tasks";
+const baseUrl = import.meta.env.MONGODB_URL + "/api/v1/tasks";
 
 
 //get the data
