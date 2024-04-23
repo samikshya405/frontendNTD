@@ -21,7 +21,7 @@ const BadToDo = ({
     fetchfromAPI();
   };
   const handleDelete = async () => {
-    const idToDelete = { _id };
+    const idToDelete = [{ _id }];
     await deleteTask(idToDelete);
     fetchfromAPI();
   };
@@ -54,9 +54,9 @@ const BadToDo = ({
         <div className="move-left" onClick={handleMove}>
           <ArrowBackIcon />
         </div>
-        <div className="delet" onClick={handleDelete}>
+        {/* <div className="delet" onClick={handleDelete}>
           <DeleteIcon />
-        </div>
+        </div> */}
       </div>
     </div>
   );

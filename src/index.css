@@ -184,3 +184,8 @@ input{
 .delete{
     cursor: pointer;
 }
+.check-box{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}

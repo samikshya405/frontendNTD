@@ -2,14 +2,22 @@ import React, { useState } from "react";
 import { Button, TextField, Typography } from "@mui/material";
 import { addtask } from "../utils/handleAPI";
 
-const Addtask = ({fetchfromAPI}) => {
+const Addtask = ({fetchfromAPI,entryList}) => {
   const [task, settask] = useState("");
   const [hr, sethr] = useState('');
   const [response, setResponse] = useState({})
+  const totalHr = entryList.reduce((a,b)=>{
+    return a + b.hr
+
+  },0)
   const handleSubmit = async(e) => {
     e.preventDefault()
+
     if(task.trim()==='' || hr.trim()===''){
         return alert("please fill the value")
+    }
+    if(totalHr+Number(hr)>172){
+      return alert("hour exceeded")
     }
     let taskToAdd ={
         task, hr, type:'entry'

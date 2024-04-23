@@ -21,7 +21,7 @@ const EachTodo = ({
     fetchfromAPI();
   };
   const handleDelete = async () => {
-    const idToDelete = { _id };
+    const idToDelete = [{ _id }];
     await deleteTask(idToDelete);
     fetchfromAPI();
   };
@@ -51,9 +51,9 @@ const EachTodo = ({
       </div>
       <div className="eachHour">{hr}</div>
       <div className="edit">
-        <div className="delet" onClick={handleDelete}>
+        {/* <div className="delet" onClick={handleDelete}>
           <DeleteIcon />
-        </div>
+        </div> */}
         <div className="move-right" onClick={handleMove}>
           <ArrowRightAltIcon />
         </div>

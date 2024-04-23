@@ -20,7 +20,7 @@ const App = () => {
   return (
     <div className="container">
       <h1>not to do list</h1>
-      <Addtask fetchfromAPI={fetchfromAPI} />
+      <Addtask fetchfromAPI={fetchfromAPI} entryList={entryList} />
       <Todos entryList={entryList} fetchfromAPI={fetchfromAPI} />
     </div>
   );
